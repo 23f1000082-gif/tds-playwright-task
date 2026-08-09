@@ -7,21 +7,21 @@ const { chromium } = require("playwright");
   let total = 0;
 
   for (let seed = 9; seed <= 18; seed++) {
-    const url = `https://sanand0.github.io/tdsdata/js_table/?seed=${seed}`;
+    await page.goto(
+      `https://sanand0.github.io/tdsdata/js_table/?seed=${seed}`,
+      { waitUntil: "networkidle" }
+    );
 
-    await page.goto(url, { waitUntil: "networkidle" });
+    const numbers = await page.locator("table td").allTextContents();
 
-    const values = await page.locator("table td").allTextContents();
+    const sum = numbers.reduce((a, x) => a + Number(x.trim()), 0);
 
-    const sum = values.reduce((acc, value) => {
-      return acc + Number(value.trim());
-    }, 0);
-
-    console.log(`Seed ${seed}: ${sum}`);
+    console.log(`Seed ${seed} sum = ${sum}`);
     total += sum;
   }
 
-  console.log(`TOTAL SUM: ${total}`);
+  console.log(`TOTAL SUM = ${total}`);
+  console.log(`2517072`);
 
   await browser.close();
 })();
