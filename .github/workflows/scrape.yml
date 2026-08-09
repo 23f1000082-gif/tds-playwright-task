@@ -22,5 +22,5 @@ jobs:
           npm install playwright
           npx playwright install --with-deps chromium
 
-      - name: Scrape tables - 23f1000082@ds.study.iitm.ac.in
+      - name: Scrape tables - 231f00082@ds.study.iitm.ac.in
         run: node scrape.js
