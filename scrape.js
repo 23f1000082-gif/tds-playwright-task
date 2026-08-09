@@ -20,8 +20,7 @@ const { chromium } = require("playwright");
     total += sum;
   }
 
-  console.log(`TOTAL SUM = ${total}`);
-  console.log(`2517072`);
-
+console.log(`SUM: ${total}`);
+  
   await browser.close();
 })();
